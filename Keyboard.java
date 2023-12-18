@@ -7,7 +7,7 @@ public class Keyboard implements KeyListener {
     private HashMap<Integer, Boolean> keyPressed = new HashMap<>();
 
     public boolean isPressed(int keyCode){
-        Boolean pressed = this.keyPressed.get(keyPressed);
+        Boolean pressed = this.keyPressed.get(keyCode);
         if(pressed == null){
             return false;
         }

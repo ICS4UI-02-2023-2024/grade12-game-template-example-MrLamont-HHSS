@@ -23,17 +23,17 @@ public class Drawing extends JPanel{
   final int HEIGHT = 600;
 
   // Other variables for your project can go on the next lines
-
+  private Color lightBlue = new Color(128, 168, 242);
+  private Mario player;
+  private Mario player2;
   
-  
-    
-
 
   // Initialize things BEFORE the game starts
   public void setup(){
     // are there any variables that need initialized BEFORE the game starts?
     // Do that here!
-    
+    this.player = new Mario(30, 200, 25, 50);
+    this.player2 = new Mario(500, 200, 25, 50);
     
     
   }
@@ -45,7 +45,14 @@ public class Drawing extends JPanel{
     // clear the screen
     g.clearRect(0, 0, WIDTH, HEIGHT);
 
+    g.setColor(lightBlue);
     // You can add more drawing here
+    if(keys.isPressed(KeyEvent.VK_SPACE)){
+      g.fillRect(mouse.getX(),mouse.getY(), 50, 100);
+    }
+
+    this.player.draw((Graphics2D)g);
+    this.player2.draw((Graphics2D)g);
     
     
     
@@ -55,6 +62,27 @@ public class Drawing extends JPanel{
   public void loop() {
     // This method is called by the game loop
     // This is where your game logic goes
+
+    if(keys.isPressed(KeyEvent.VK_A)){
+      this.player.moveLeft();
+    }else if(keys.isPressed(KeyEvent.VK_D)){
+      this.player.moveRight();
+    }else{
+      this.player.stop();
+    }
+
+    this.player.update();
+
+
+    if(keys.isPressed(KeyEvent.VK_LEFT)){
+      this.player2.moveLeft();
+    }else if(keys.isPressed(KeyEvent.VK_RIGHT)){
+      this.player2.moveRight();
+    }else{
+      this.player2.stop();
+    }
+
+    this.player2.update();
     
     
   }
